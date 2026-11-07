@@ -1,0 +1,26 @@
+# Archivos de compilación
+target/
+*.class
+
+# Archivos de IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Archivos de NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Archivos de VS Code
+.vscode/
+
+# Configuración local con credenciales
+src/main/resources/application.properties
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
