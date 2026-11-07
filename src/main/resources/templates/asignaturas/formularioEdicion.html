@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Asignatura - SISGA</title>
+</head>
+<body>
+<h1 style="text-align:center;">Editar Asignatura</h1>
+<form th:action="@{/asignaturas/actualizar/{id}(id=${idAsignatura})}" th:object="${asignaturaDTO}" method="post" style="max-width: 400px; margin: 0 auto;">
+    <label>ID Docente:</label>
+    <input type="number" th:field="*{idDocente}" required><br><br>
+    <label>Código Asignatura:</label>
+    <input type="text" th:field="*{codigoAsignatura}" required><br><br>
+    <label>Nombre:</label>
+    <input type="text" th:field="*{nombre}" required><br><br>
+    <label>Créditos:</label>
+    <input type="number" th:field="*{creditos}"><br><br>
+    <label>Descripción:</label>
+    <textarea th:field="*{descripcion}" rows="3" cols="30"></textarea><br><br>
+    <button type="submit">Actualizar Asignatura</button>
+</form>
+<div style="text-align:center; margin-top: 20px;">
+    <a th:href="@{/asignaturas}">Volver a la lista</a>
+</div>
+</body>
+</html>

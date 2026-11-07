@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Asignaturas - SISGA</title>
+  <style>
+    table { border-collapse: collapse; width: 90%; margin: 20px auto; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
+    th { background-color: #1565C0; color: white; }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    .btn { padding: 5px 10px; text-decoration: none; color: white; border-radius: 4px; display: inline-block; }
+    .btn-primary { background-color: #1565C0; }
+    .btn-danger { background-color: #dc3545; }
+    .acciones { display: flex; gap: 5px; justify-content: center; }
+    th:last-child { width: 160px; }
+  </style>
+</head>
+<body>
+<h1 style="text-align:center;">Listado de Asignaturas</h1>
+<div style="text-align:center; margin-bottom: 20px;">
+  <a th:href="@{/asignaturas/nuevo}" class="btn btn-primary">Registrar Nueva Asignatura</a>
+</div>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>ID Docente</th>
+    <th>Código</th>
+    <th>Nombre</th>
+    <th>Créditos</th>
+    <th>Descripción</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="asig : ${listaAsignaturas}">
+    <td th:text="${asig.idAsignatura}"></td>
+    <td th:text="${asig.idDocente}"></td>
+    <td th:text="${asig.codigoAsignatura}"></td>
+    <td th:text="${asig.nombre}"></td>
+    <td th:text="${asig.creditos}"></td>
+    <td th:text="${asig.descripcion}"></td>
+    <td>
+      <div class="acciones">
+        <a th:href="@{/asignaturas/editar/{id}(id=${asig.idAsignatura})}" class="btn btn-primary">Editar</a>
+        <a th:href="@{/asignaturas/eliminar/{id}(id=${asig.idAsignatura})}" class="btn btn-danger" onclick="return confirm('¿Eliminar asignatura?');">Eliminar</a>
+      </div>
+    </td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(listaAsignaturas)}">
+    <td colspan="7" style="text-align:center;">No hay asignaturas registradas.</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

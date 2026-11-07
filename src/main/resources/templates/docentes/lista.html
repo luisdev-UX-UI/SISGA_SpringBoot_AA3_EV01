@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Docentes - SISGA</title>
+  <style>
+    table {
+        border-collapse: collapse;
+        width: 90%;
+        margin: 20px auto;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        vertical-align: middle;
+    }
+    th {
+        background-color: #1565C0;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .btn {
+        padding: 5px 10px;
+        text-decoration: none;
+        color: white;
+        border-radius: 4px;
+        display: inline-block;
+    }
+    .btn-primary {
+        background-color: #1565C0;
+    }
+    .btn-danger {
+        background-color: #dc3545;
+    }
+    .acciones {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    th:last-child {
+        width: 160px;
+    }
+  </style>
+</head>
+<body>
+<h1 style="text-align:center;">Listado de Docentes</h1>
+<div style="text-align:center; margin-bottom: 20px;">
+  <a th:href="@{/docentes/nuevo}" class="btn btn-primary">Registrar Nuevo Docente</a>
+</div>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>ID Usuario</th>
+    <th>Código</th>
+    <th>Especialidad</th>
+    <th>Fecha Contratación</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="doc : ${listaDocentes}">
+    <td th:text="${doc.idDocente}"></td>
+    <td th:text="${doc.idUsuario}"></td>
+    <td th:text="${doc.codigoDocente}"></td>
+    <td th:text="${doc.especialidad}"></td>
+    <td th:text="${doc.fechaContratacion}"></td>
+    <td>
+      <div class="acciones">
+        <a th:href="@{/docentes/editar/{id}(id=${doc.idDocente})}" class="btn btn-primary">Editar</a>
+        <a th:href="@{/docentes/eliminar/{id}(id=${doc.idDocente})}" class="btn btn-danger" onclick="return confirm('¿Eliminar docente?');">Eliminar</a>
+      </div>
+    </td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(listaDocentes)}">
+    <td colspan="6" style="text-align:center;">No hay docentes registrados.</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

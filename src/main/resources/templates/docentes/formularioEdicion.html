@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Docente - SISGA</title>
+</head>
+<body>
+<h1 style="text-align:center;">Editar Docente</h1>
+<form th:action="@{/docentes/actualizar/{id}(id=${idDocente})}" th:object="${docenteDTO}" method="post" style="max-width: 400px; margin: 0 auto;">
+    <label>ID Usuario:</label>
+    <input type="number" th:field="*{idUsuario}" required><br><br>
+    <label>Código Docente:</label>
+    <input type="text" th:field="*{codigoDocente}" required><br><br>
+    <label>Especialidad:</label>
+    <input type="text" th:field="*{especialidad}"><br><br>
+    <label>Fecha Contratación:</label>
+    <input type="date" th:field="*{fechaContratacion}" required><br><br>
+    <button type="submit">Actualizar Docente</button>
+</form>
+<div style="text-align:center; margin-top: 20px;">
+    <a th:href="@{/docentes}">Volver a la lista</a>
+</div>
+</body>
+</html>

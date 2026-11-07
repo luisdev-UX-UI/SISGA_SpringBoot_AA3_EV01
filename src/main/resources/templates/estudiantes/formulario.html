@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Estudiante - SISGA</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { max-width: 400px; margin: 0 auto; }
+        label { display: block; margin-top: 10px; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; }
+        button { margin-top: 15px; padding: 10px; background-color: #1565C0; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+<h1 style="text-align:center;">Registrar Estudiante</h1>
+
+<form th:action="@{/estudiantes/guardar}" th:object="${estudianteDTO}" method="post">
+    <label>ID Usuario:</label>
+    <input type="number" th:field="*{idUsuario}" required>
+
+    <label>Código Estudiante:</label>
+    <input type="text" th:field="*{codigoEstudiante}" required>
+
+    <label>Fecha Ingreso:</label>
+    <input type="date" th:field="*{fechaIngreso}" required>
+
+    <label>Estado:</label>
+    <select th:field="*{estado}">
+        <option value="activo">Activo</option>
+        <option value="inactivo">Inactivo</option>
+    </select>
+
+    <button type="submit">Guardar Estudiante</button>
+</form>
+
+<div style="text-align:center; margin-top: 20px;">
+    <a th:href="@{/estudiantes}">Volver a la lista</a>
+</div>
+</body>
+</html>

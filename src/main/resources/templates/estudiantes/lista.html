@@ -1,52 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Lista de Estudiantes - SISGA</title>
-    <style>
-        table { border-collapse: collapse; width: 80%; margin: 20px auto; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #1565C0; color: white; }
-        tr:nth-child(even) { background-color: #f2f2f2; }
-        .btn { padding: 5px 10px; text-decoration: none; color: white; border-radius: 4px; }
-        .btn-primary { background-color: #1565C0; }
-        .btn-danger { background-color: #dc3545; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Lista de Estudiantes - SISGA</title>
+  <style>
+    table { border-collapse: collapse; width: 80%; margin: 20px auto; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #1565C0; color: white; }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    .btn { padding: 5px 10px; text-decoration: none; color: white; border-radius: 4px; }
+    .btn-primary { background-color: #1565C0; }
+    .btn-danger { background-color: #dc3545; }
+  </style>
 </head>
 <body>
 <h1 style="text-align:center;">Listado de Estudiantes</h1>
-
 <div style="text-align:center; margin-bottom: 20px;">
-    <a th:href="@{/estudiantes/nuevo}" class="btn btn-primary">Registrar Nuevo Estudiante</a>
+  <a th:href="@{/estudiantes/nuevo}" class="btn btn-primary">Registrar Nuevo Estudiante</a>
 </div>
-
 <table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>ID Usuario</th>
-        <th>Código</th>
-        <th>Fecha Ingreso</th>
-        <th>Estado</th>
-        <th>Acciones</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="est : ${listaEstudiantes}">
-        <td th:text="${est.idEstudiante}"></td>
-        <td th:text="${est.idUsuario}"></td>
-        <td th:text="${est.codigoEstudiante}"></td>
-        <td th:text="${est.fechaIngreso}"></td>
-        <td th:text="${est.estado}"></td>
-        <td>
-            <a th:href="@{/estudiantes/editar/{id}(id=${est.idEstudiante})}" class="btn btn-primary">Editar</a>
-            <a th:href="@{/estudiantes/eliminar/{id}(id=${est.idEstudiante})}" class="btn btn-danger" onclick="return confirm('¿Eliminar estudiante?');">Eliminar</a>
-        </td>
-    </tr>
-    <tr th:if="${#lists.isEmpty(listaEstudiantes)}">
-        <td colspan="6" style="text-align:center;">No hay estudiantes registrados.</td>
-    </tr>
-    </tbody>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>ID Usuario</th>
+    <th>Código</th>
+    <th>Fecha Ingreso</th>
+    <th>Estado</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="est : ${listaEstudiantes}">
+    <td th:text="${est.idEstudiante}"></td>
+    <td th:text="${est.idUsuario}"></td>
+    <td th:text="${est.codigoEstudiante}"></td>
+    <td th:text="${est.fechaIngreso}"></td>
+    <td th:text="${est.estado}"></td>
+    <td>
+      <a th:href="@{/estudiantes/editar/{id}(id=${est.idEstudiante})}" class="btn btn-primary">Editar</a>
+      <a th:href="@{/estudiantes/eliminar/{id}(id=${est.idEstudiante})}" class="btn btn-danger" onclick="return confirm('¿Eliminar estudiante?');">Eliminar</a>
+    </td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(listaEstudiantes)}">
+    <td colspan="6" style="text-align:center;">No hay estudiantes registrados.</td>
+  </tr>
+  </tbody>
 </table>
 </body>
 </html>
