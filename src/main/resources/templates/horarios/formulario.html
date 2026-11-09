@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Horario - SISGA</title>
+</head>
+<body>
+<h1 style="text-align:center;">Registrar Horario</h1>
+<form th:action="@{/horarios/guardar}" th:object="${horarioDTO}" method="post" style="max-width: 400px; margin: 0 auto;">
+  <label>ID Asignatura:</label>
+  <input type="number" th:field="*{idAsignatura}" required><br><br>
+  <label>Día de la Semana:</label>
+  <select th:field="*{diaSemana}">
+    <option value="LUNES">Lunes</option>
+    <option value="MARTES">Martes</option>
+    <option value="MIERCOLES">Miércoles</option>
+    <option value="JUEVES">Jueves</option>
+    <option value="VIERNES">Viernes</option>
+    <option value="SABADO">Sábado</option>
+  </select><br><br>
+  <label>Hora Inicio:</label>
+  <input type="time" th:field="*{horaInicio}" required><br><br>
+  <label>Hora Fin:</label>
+  <input type="time" th:field="*{horaFin}" required><br><br>
+  <label>Aula:</label>
+  <input type="text" th:field="*{aula}"><br><br>
+  <button type="submit">Guardar Horario</button>
+</form>
+<div style="text-align:center; margin-top: 20px;">
+  <a th:href="@{/horarios}">Volver a la lista</a>
+</div>
+<div th:if="${error}" style="color: red; text-align: center; margin-bottom: 10px;" th:text="${error}"></div>
+</body>
+</html>

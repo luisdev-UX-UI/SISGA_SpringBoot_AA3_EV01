@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Matrículas - SISGA</title>
+  <style>
+    table { border-collapse: collapse; width: 90%; margin: 20px auto; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
+    th { background-color: #1565C0; color: white; }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    .btn { padding: 5px 10px; text-decoration: none; color: white; border-radius: 4px; display: inline-block; }
+    .btn-primary { background-color: #1565C0; }
+    .btn-danger { background-color: #dc3545; }
+    .acciones { display: flex; gap: 5px; justify-content: center; }
+    th:last-child { width: 160px; }
+  </style>
+</head>
+<body>
+<h1 style="text-align:center;">Listado de Matrículas</h1>
+<div style="text-align:center; margin-bottom: 20px;">
+  <a th:href="@{/matriculas/nuevo}" class="btn btn-primary">Registrar Nueva Matrícula</a>
+</div>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>ID Estudiante</th>
+    <th>ID Asignatura</th>
+    <th>Periodo</th>
+    <th>Fecha Matrícula</th>
+    <th>Estado</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="mat : ${listaMatriculas}">
+    <td th:text="${mat.idMatricula}"></td>
+    <td th:text="${mat.idEstudiante}"></td>
+    <td th:text="${mat.idAsignatura}"></td>
+    <td th:text="${mat.periodo}"></td>
+    <td th:text="${mat.fechaMatricula}"></td>
+    <td th:text="${mat.estado}"></td>
+    <td>
+      <div class="acciones">
+        <a th:href="@{/matriculas/editar/{id}(id=${mat.idMatricula})}" class="btn btn-primary">Editar</a>
+        <a th:href="@{/matriculas/eliminar/{id}(id=${mat.idMatricula})}" class="btn btn-danger" onclick="return confirm('¿Eliminar matrícula?');">Eliminar</a>
+      </div>
+    </td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(listaMatriculas)}">
+    <td colspan="7" style="text-align:center;">No hay matrículas registradas.</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Calificación - SISGA</title>
+</head>
+<body>
+<h1 style="text-align:center;">Registrar Calificación</h1>
+<form th:action="@{/calificaciones/guardar}" th:object="${calificacionDTO}" method="post" style="max-width: 400px; margin: 0 auto;">
+    <label>ID Matrícula:</label>
+    <input type="number" th:field="*{idMatricula}" required><br><br>
+    <label>Nota Parcial 1:</label>
+    <input type="number" step="0.01" th:field="*{notaParcial1}" value="0.00"><br><br>
+    <label>Nota Parcial 2:</label>
+    <input type="number" step="0.01" th:field="*{notaParcial2}" value="0.00"><br><br>
+    <label>Nota Final:</label>
+    <input type="number" step="0.01" th:field="*{notaFinal}" value="0.00"><br><br>
+    <label>Estado:</label>
+    <select th:field="*{estado}">
+        <option value="aprobado">Aprobado</option>
+        <option value="reprobado">Reprobado</option>
+    </select><br><br>
+    <button type="submit">Guardar Calificación</button>
+</form>
+<div style="text-align:center; margin-top: 20px;">
+    <a th:href="@{/calificaciones}">Volver a la lista</a>
+</div>
+</body>
+</html>

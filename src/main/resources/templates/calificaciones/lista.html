@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Calificaciones - SISGA</title>
+    <style>
+        table { border-collapse: collapse; width: 90%; margin: 20px auto; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: middle; }
+        th { background-color: #1565C0; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .btn { padding: 5px 10px; text-decoration: none; color: white; border-radius: 4px; display: inline-block; }
+        .btn-primary { background-color: #1565C0; }
+        .btn-danger { background-color: #dc3545; }
+        .acciones { display: flex; gap: 5px; justify-content: center; }
+        th:last-child { width: 160px; }
+    </style>
+</head>
+<body>
+<h1 style="text-align:center;">Listado de Calificaciones</h1>
+<div style="text-align:center; margin-bottom: 20px;">
+    <a th:href="@{/calificaciones/nuevo}" class="btn btn-primary">Registrar Nueva Calificación</a>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>ID Matrícula</th>
+        <th>Parcial 1</th>
+        <th>Parcial 2</th>
+        <th>Nota Final</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cal : ${listaCalificaciones}">
+        <td th:text="${cal.idCalificacion}"></td>
+        <td th:text="${cal.idMatricula}"></td>
+        <td th:text="${cal.notaParcial1}"></td>
+        <td th:text="${cal.notaParcial2}"></td>
+        <td th:text="${cal.notaFinal}"></td>
+        <td th:text="${cal.estado}"></td>
+        <td>
+            <div class="acciones">
+                <a th:href="@{/calificaciones/editar/{id}(id=${cal.idCalificacion})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/calificaciones/eliminar/{id}(id=${cal.idCalificacion})}" class="btn btn-danger" onclick="return confirm('¿Eliminar calificación?');">Eliminar</a>
+            </div>
+        </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(listaCalificaciones)}">
+        <td colspan="7" style="text-align:center;">No hay calificaciones registradas.</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

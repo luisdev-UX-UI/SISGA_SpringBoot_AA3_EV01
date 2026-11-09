@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Calificación - SISGA</title>
+</head>
+<body>
+<h1 style="text-align:center;">Editar Calificación</h1>
+<form th:action="@{/calificaciones/actualizar/{id}(id=${idCalificacion})}" th:object="${calificacionDTO}" method="post" style="max-width: 400px; margin: 0 auto;">
+  <label>ID Matrícula:</label>
+  <input type="number" th:field="*{idMatricula}" required><br><br>
+  <label>Nota Parcial 1:</label>
+  <input type="number" step="0.01" th:field="*{notaParcial1}"><br><br>
+  <label>Nota Parcial 2:</label>
+  <input type="number" step="0.01" th:field="*{notaParcial2}"><br><br>
+  <label>Nota Final:</label>
+  <input type="number" step="0.01" th:field="*{notaFinal}"><br><br>
+  <label>Estado:</label>
+  <select th:field="*{estado}">
+    <option value="aprobado">Aprobado</option>
+    <option value="reprobado">Reprobado</option>
+  </select><br><br>
+  <button type="submit">Actualizar Calificación</button>
+</form>
+<div style="text-align:center; margin-top: 20px;">
+  <a th:href="@{/calificaciones}">Volver a la lista</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Matrícula - SISGA</title>
+</head>
+<body>
+<h1 style="text-align:center;">Registrar Matrícula</h1>
+<form th:action="@{/matriculas/guardar}" th:object="${matriculaDTO}" method="post" style="max-width: 400px; margin: 0 auto;">
+    <label>ID Estudiante:</label>
+    <input type="number" th:field="*{idEstudiante}" required><br><br>
+    <label>ID Asignatura:</label>
+    <input type="number" th:field="*{idAsignatura}" required><br><br>
+    <label>Periodo:</label>
+    <input type="text" th:field="*{periodo}" placeholder="Ej: 2026-1" required><br><br>
+    <label>Fecha Matrícula:</label>
+    <input type="date" th:field="*{fechaMatricula}" required><br><br>
+    <label>Estado:</label>
+    <select th:field="*{estado}">
+        <option value="activa">Activa</option>
+        <option value="cancelada">Cancelada</option>
+    </select><br><br>
+    <button type="submit">Guardar Matrícula</button>
+</form>
+<div style="text-align:center; margin-top: 20px;">
+    <a th:href="@{/matriculas}">Volver a la lista</a>
+</div>
+</body>
+</html>
